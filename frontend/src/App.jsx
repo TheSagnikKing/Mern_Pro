@@ -8,6 +8,7 @@ import AccountDetail from './features/Admin/auth/AccountDetail/AccountDetail'
 import Home from './features/Admin/dashboard/Home/Home'
 import Salon from './features/Admin/dashboard/Salon/Salon'
 import DashLayout from './components/Admin/DashLayout'
+import EditProfile from './features/Admin/dashboard/EditProfile/EditProfile'
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route element={<DashLayout/>}>
           <Route path="/admin-dashboard" element={<Home />} />
           <Route path="/admin-dashboard/salon" element={<Salon />} />
+          <Route path="/admin-dashboard/editprofile" element={<EditProfile/>}/>
         </Route>
 
 
