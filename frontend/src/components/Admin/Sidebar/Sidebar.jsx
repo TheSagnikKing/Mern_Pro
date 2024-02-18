@@ -55,8 +55,6 @@ const Sidebar = ({open,setOpen}) => {
         setOpen(true)
     }
 
-    console.log("Open menu ",open)
-
     const hidesidebar = open ? "sidebar" : "sidebar-hide"
     // const menuname = open
 
