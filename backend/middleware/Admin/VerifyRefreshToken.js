@@ -11,8 +11,6 @@ const verifyRefreshToken = (req, res, next) => {
 
     const token = authHeader.split(' ')[1]
 
-    console.log(token)
-
     jwt.verify(
         token,
         ACCESS_TOKEN_SECRET,
