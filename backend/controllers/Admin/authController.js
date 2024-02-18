@@ -34,7 +34,7 @@ const adminLogin = async (req, res) => {
             }
         },
         ACCESS_TOKEN_SECRET,
-        { expiresIn: '1m' }
+        { expiresIn: '20s' }
     )
 
     const refreshToken = jwt.sign(
@@ -83,7 +83,7 @@ const adminRefresh = (req, res) => {
                     }
                 },
                 ACCESS_TOKEN_SECRET,
-                { expiresIn: '1m' }
+                { expiresIn: '20s' }
             )
 
             res.json({ accessToken })

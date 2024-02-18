@@ -17,26 +17,25 @@ const baseQuery = fetchBaseQuery({
 })
 
 const baseQueryWithReauth = async (args, api, extraOptions) => {
-    // console.log(args) // request url, method, body
-    // console.log(api) // signal, dispatch, getState()
-    // console.log(extraOptions) //custom like {shout: true}
 
     let result = await baseQuery(args, api, extraOptions)
 
-    // If you want, handle other status codes, too
-    if (result?.error?.status === 401) { //Look at the status code this time i have status code wrong thats why my refresh token logic is not working
+    // a. Here 403 is Forbidden = means access token is present in the header but it is invalid or expired.
+    // b. Here 401 is Unauthorized = means access token is null or not present.
+
+    // IMP = If i write this logic (result?.error?.status === 403 || result?.error?.status === 401 ) then i dont have to
+    // define persistLogin component if i am not giving the remember me option in my signin . if i am giving the remember me option
+    // then i have to create a persistLogin component where refresh Token will run base on persist value
+
+    if (result?.error?.status === 403 || result?.error?.status === 401 ) { 
         console.log('sending refresh token')
 
-        // send refresh token to get new access token 
         const refreshResult = await baseQuery('/admin/auth/refresh', api, extraOptions)
 
-        console.log("Refresh Result ",refreshResult)
         if (refreshResult?.data) {
 
-            // store the new token 
             api.dispatch(setCredentials({ ...refreshResult.data }))
 
-            // retry original query with new access token
             result = await baseQuery(args, api, extraOptions)
         } else {
 
