@@ -30,7 +30,9 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     // Ai method apply korle amake individually error handle korte hbe .ota theke bachar jonnoi ami component banabo otake wrap koredebo
     // jate seta akta global error handle hisabe kaj korenaki
 
-    if (result?.error?.status === 403 || result?.error?.status === 401 ) { 
+    // ami sudhu matro aikhane forbidden request takai handle korbo mane accesstoken ache but invalid
+
+    if (result?.error?.status === 403) { 
         console.log('sending refresh token')
 
         const refreshResult = await baseQuery('/admin/auth/refresh', api, extraOptions)
