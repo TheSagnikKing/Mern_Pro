@@ -7,6 +7,8 @@ const baseQuery = fetchBaseQuery({
     prepareHeaders: (headers, { getState }) => {
         const token = getState().auth.token
 
+        console.log("token ",token)
+
         if (token) {
             headers.set("authorization", `Bearer ${token}`)
         }
@@ -22,12 +24,13 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     let result = await baseQuery(args, api, extraOptions)
 
     // If you want, handle other status codes, too
-    if (result?.error?.status === 403) {
+    if (result?.error?.status === 401) { //Look at the status code this time i have status code wrong thats why my refresh token logic is not working
         console.log('sending refresh token')
 
         // send refresh token to get new access token 
         const refreshResult = await baseQuery('/admin/auth/refresh', api, extraOptions)
 
+        console.log("Refresh Result ",refreshResult)
         if (refreshResult?.data) {
 
             // store the new token 
@@ -49,6 +52,6 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 
 export const apiSlice = createApi({
     baseQuery: baseQueryWithReauth,
-    tagTypes: ['Note', 'User'],
+    // tagTypes: ['Note', 'User'],
     endpoints: builder => ({})
 })
