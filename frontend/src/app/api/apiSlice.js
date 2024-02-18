@@ -25,7 +25,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 
     // IMP = If i write this logic (result?.error?.status === 403 || result?.error?.status === 401 ) then i dont have to
     // define persistLogin component if i am not giving the remember me option in my signin . if i am giving the remember me option
-    // then i have to create a persistLogin component where refresh Token will run base on persist value
+    // then i have to create a persistLogin component where refresh Token will run base on persist value.
 
     if (result?.error?.status === 403 || result?.error?.status === 401 ) { 
         console.log('sending refresh token')
