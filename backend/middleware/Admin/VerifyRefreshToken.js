@@ -3,12 +3,10 @@ const jwt = require('jsonwebtoken')
 const ACCESS_TOKEN_SECRET = "ACCESS_TOKEN_SECRET"
 
 const verifyRefreshToken = (req, res, next) => {
-    // const cookies = req.cookies
 
-    // // If i write this line it will work perfectly but i have to handle the error individually which is not a good way
-    // // Thats why create a persistLogin component which will handle this error globally 
-    // if (!cookies?.AdminRefreshToken) return res.status(404).json({message:"Refresh Token not present."})
-
+    // accessToken aschena atar dutoi way ache either user page refresh koreche tai access token uregech or
+    // refresh token expire kore geche tai access token generate hochena
+    
     const authHeader = req.headers.authorization || req.headers.Authorization
 
     if (!authHeader?.startsWith('Bearer ')) {
