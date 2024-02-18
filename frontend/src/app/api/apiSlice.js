@@ -32,6 +32,9 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 
     // ami sudhu matro aikhane forbidden request takai handle korbo mane accesstoken ache but invalid
 
+    // Ami persist Login component wrap korchi karon sobar firste ami unauthorize take check korenichi tar pore ami 403 forbidden request gulo check korchi.
+    // Ata korle amr global unauthorize check hoejache naile amake individually 401 handle korte hoto
+
     if (result?.error?.status === 403) { 
         console.log('sending refresh token')
 
