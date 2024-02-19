@@ -97,7 +97,11 @@ const adminRefresh = (req, res) => {
 const adminLogout = (req, res) => {
     //cookie parse na use korle ata kaj korbe na
     const cookies = req.cookies
-    if (!cookies?.AdminRefreshToken) return res.sendStatus(204) //No content
+
+    // Ai line ta lagia ami logout error check korbo
+    // if(cookies) { return res.status(401).json({ message:"Unauthorize Admin" }) }
+
+    if (!cookies?.AdminRefreshToken) return res.status(404).json({ message:"Unauthorize Admin" }) //No content
     res.clearCookie('AdminRefreshToken', { 
         httpOnly: true, 
         // sameSite: 'None', 

@@ -27,6 +27,7 @@ const Signin = () => {
       console.log(accessToken)
       setEmail("")
       setPassword("")
+      localStorage.setItem("AdminLoggedIn","true")
       navigate("/admin-dashboard")
     } catch (error) {
       if (!error.status) {

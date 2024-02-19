@@ -7,7 +7,7 @@ import { selectCurrentToken } from './authSlice'
 
 const ProtectedRoute = () => {
 
-    const AdminToken = useSelector(selectCurrentToken)
+    const token = useSelector(selectCurrentToken)
     const effectRan = useRef(false)
 
     const [trueSuccess, setTrueSuccess] = useState(false)
@@ -39,7 +39,7 @@ const ProtectedRoute = () => {
                 }
             }
 
-            if (!AdminToken) verifyRefreshToken()
+            if (!token) verifyRefreshToken()
         }
 
         return () => effectRan.current = true
@@ -68,7 +68,7 @@ const ProtectedRoute = () => {
         )
     }else if(isSuccess && trueSuccess){
         content = <Outlet />
-    }else if(AdminToken && isUninitialized){ 
+    }else if(token && isUninitialized){ 
         // VVP
         // isUninitialized ta na likhle first time login korar por amr page blank asbe but 
         // refresh korle then sobh normally cholbe ata ke likhle oi problem ta solve how jabe

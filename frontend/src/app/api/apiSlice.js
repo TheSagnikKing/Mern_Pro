@@ -5,10 +5,10 @@ const baseQuery = fetchBaseQuery({
     baseUrl: 'http://localhost:8000',
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
-        const AdminToken = getState().auth.AdminToken
+        const token = getState().auth.token
 
-        if (AdminToken) {
-            headers.set("authorization", `Bearer ${AdminToken}`)
+        if (token) {
+            headers.set("authorization", `Bearer ${token}`)
         }
         return headers
     }

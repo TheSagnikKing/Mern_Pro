@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Header.css"
 import { useNavigate } from 'react-router-dom'
+import { useSendLogoutMutation } from '../../../features/Admin/auth/authApiSlice'
 
 const Header = () => {
+
+  const [logout, { isFetching }] = useSendLogoutMutation()
+
+  console.log("useSendLogoutMutation ", useSendLogoutMutation())
 
   const navigate = useNavigate()
 
@@ -10,18 +15,26 @@ const Header = () => {
     navigate("/admin-dashboard/editprofile")
   }
 
-  const logoutClicked = () => {
-    alert("logout clicked")
+  const logoutClicked = async() => {
+    try {
+      await logout().unwrap()
+      localStorage.setItem("AdminLoggedIn","false")
+      navigate("/admin-signin")
+
+    } catch (error) {
+      console.log(error?.data)
+    }
+
   }
 
   const content = (
     <main className='admin__header__main'>
-        <h1>Header</h1>
+      <h1>Header</h1>
 
-        <div>
-            <button onClick={editClicked}>Edit Profile</button>
-            <button onClick={logoutClicked}>Logout</button>
-        </div>
+      <div>
+        <button onClick={editClicked}>Edit Profile</button>
+        {isFetching ? <h1 style={{ color: "#fff" }}>Loader</h1> : <button onClick={logoutClicked}>Logout</button>}
+      </div>
     </main>
   )
 

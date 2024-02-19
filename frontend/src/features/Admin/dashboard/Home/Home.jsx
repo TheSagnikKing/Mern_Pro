@@ -128,8 +128,6 @@ const Home = () => {
   // useLazyQuery componment apply korar por akbar page ta refresh korenile sobh kaj korbe
   const [fetchsalon, { data, isFetching, isSuccess, isError, error }] = useLazyGetSalonQuery()
 
-  console.log(useLazyGetSalonQuery())
-
   let content
 
   const fetchHandler = () => {

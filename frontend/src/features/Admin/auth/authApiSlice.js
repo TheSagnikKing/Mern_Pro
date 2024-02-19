@@ -1,6 +1,8 @@
 import { apiSlice } from "../../../app/api/apiSlice"
 import { logOut, setCredentials } from "./authSlice"
 
+console.log(apiSlice)
+
 //Logine component theke token localstate save hbe
 //Refresh endpoint of localstate token save korbe
 
@@ -21,11 +23,12 @@ export const authApiSlice = apiSlice.injectEndpoints({
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
                 try {
                     const { data } = await queryFulfilled
-                    console.log(data)
+                    console.log("I am logout slice ",data?.message)
                     dispatch(logOut())
                     setTimeout(() => {
                         dispatch(apiSlice.util.resetApiState()) //rtk query state jodi kono cache thake segulokao reset kore debo
                     }, 1000)
+                    // dispatch(apiSlice.util.resetApiState()) 
                 } catch (err) {
                     console.log(err)
                 }
