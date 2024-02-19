@@ -119,40 +119,41 @@
 // export default Home
 
 
-import React from 'react';
-import "./Home.css";
-import { useGetSalonMutation } from './homeApiSlice';
+import React from 'react'
+import { useLazyGetSalonQuery } from './homeApiSlice'
 
 
 const Home = () => {
 
-  const [fetchSalonfnc,{ data, isLoading, isSuccess, isError, error}] = useGetSalonMutation(undefined);
+  // useLazyQuery componment apply korar por akbar page ta refresh korenile sobh kaj korbe
+  const [fetchsalon, { data, isFetching, isSuccess, isError, error }] = useLazyGetSalonQuery()
 
-  const fetchSalon = () => {
+  console.log(useLazyGetSalonQuery())
 
+  let content
 
-    fetchSalonfnc(); // Manually trigger the fetch
+  const fetchHandler = () => {
+    fetchsalon()
+  }
 
-  };
+  console.log(data)
 
-  let content;
-
+  if (isFetching) {
+    content = <h1>Loader</h1>
+  } else if(isError){
+    content =<h1 style={{color:"crimson"}}>{error?.data?.message}</h1>
+  } else{
     content = (
-      <main className='admin__dashboard__home__main'>
-        <h1 style={{ color: "green" }}>Welcome To my Admin Dashboard Home Page</h1>
-        <button onClick={fetchSalon}>Fetch</button>
-        {/* Render your salon data as needed */}
-        <div>{/* Render your salon data here */}</div>
-      </main>
-    );
+      <>
+        <h1>{data?.message}</h1>
+        <h1>Role : {data?.role}</h1>
+        <br/><hr/><br/>
+        <button onClick={fetchHandler}>Fetch</button>
+      </>
+    )
+  }
 
+  return content
+}
 
-  return content;
-};
-
-export default Home;
-
-
-
-
-
+export default Home

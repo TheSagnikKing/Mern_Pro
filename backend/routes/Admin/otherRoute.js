@@ -6,10 +6,10 @@ const verifyRefreshToken = require('../../middleware/Admin/VerifyRefreshToken')
 router.use(verifyRefreshToken)
 
 router.route('/home')
-    .post(otherController.adminHomeController)
+    .get(otherController.adminHomeController)
 
 router.route('/salon')
-    .post(otherController.adminSalonController)
+    .get(otherController.adminSalonController)
 
 
 module.exports = router
