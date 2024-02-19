@@ -15,6 +15,20 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 body: { ...credentials }
             })
         }),
+        register: builder.mutation({
+            query: (credentials) => ({
+                url: '/admin/auth/signup',
+                method: 'POST',
+                body: credentials
+            })
+        }),
+        updateAdmin: builder.mutation({
+            query: (credentials) => ({
+                url: '/admin/auth/update',
+                method: 'PATCH',
+                body: credentials
+            })
+        }),
         sendLogout: builder.mutation({
             query: () => ({
                 url: '/admin/auth/logout',
@@ -57,4 +71,6 @@ export const {
     useLoginMutation,
     useSendLogoutMutation,
     useRefreshMutation,
+    useRegisterMutation,
+    useUpdateAdminMutation
 } = authApiSlice 

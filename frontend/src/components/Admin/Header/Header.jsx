@@ -19,6 +19,8 @@ const Header = () => {
     try {
       await logout().unwrap()
       localStorage.setItem("AdminLoggedIn","false")
+      localStorage.setItem("BarberLoggedIn", "false")
+      
       navigate("/admin-signin")
 
     } catch (error) {

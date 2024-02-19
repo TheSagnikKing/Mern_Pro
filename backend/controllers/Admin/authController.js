@@ -125,7 +125,7 @@ const registerAdmin = async (req, res) => {
     const existingUser = await User.findOne({ email,role: 'Admin' }).exec()
 
     if (existingUser) {
-        return res.status(409).json({ message: 'Admin Email already exists' })
+        return res.status(404).json({ message: 'Admin Email already exists' })
     }
 
     // Hash the password
@@ -140,7 +140,7 @@ const registerAdmin = async (req, res) => {
 
     await newUser.save()
 
-    res.status(201).json({ message: 'Admin registered successfully' })
+    res.status(201).json({ message: 'Admin registered successfully', newUser })
 }
 
 // @desc Update Admin
@@ -168,7 +168,34 @@ const updateAdmin = async (req, res) => {
 
     const updatedAdmin = await foundUser.save()
 
-    res.status(201).json({ message: 'Admin information updated successfully', updatedAdmin })
+    const accessToken = jwt.sign(
+        {
+            "UserInfo": {
+                "email": email,
+                "role": foundUser.role
+            }
+        },
+        ACCESS_TOKEN_SECRET,
+        { expiresIn: '20s' }
+    )
+
+    const refreshToken = jwt.sign(
+        { "email": email,"role": foundUser.role },
+        REFRESH_TOKEN_SECRET,
+        { expiresIn: '1d' }
+    )
+
+    // Create secure cookie with refresh token 
+    res.cookie('AdminRefreshToken', refreshToken, {
+        httpOnly: true, //accessible only by web server 
+        // secure: true, //https
+        // sameSite: 'None', //cross-site cookie 
+        maxAge: 1 * 24 * 60 * 60 * 1000 //cookie expiry: set to match rT
+    })
+
+    // Send accessToken containing username and roles 
+    res.status(201).json({ message: 'Admin information updated successfully',accessToken, updatedAdmin})
+
 }
 
 module.exports = {

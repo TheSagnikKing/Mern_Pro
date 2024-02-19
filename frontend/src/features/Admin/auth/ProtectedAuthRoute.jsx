@@ -6,12 +6,16 @@ const ProtectedAuthRoute = () => {
     // Ata jehututu akta basic login form akhane jodi user localstorage theke value delete kore cholao ase tate kono
     // problem nai but main dashboarde na aste parlai holo. Ata akdom correct approach
 
+    // When i will apply barber also then useEffect redirect logic will be 
+    // if( AdminLoggedin === "true" && BarberLoggedin === "false"){navigate('/admin-dashboard)}
+
     const AdminLoggedin = localStorage.getItem("AdminLoggedIn")
+    const BarberLoggedin = localStorage.getItem("BarberLoggedIn")
 
     const navigate = useNavigate()
     
     useEffect(() => {
-        if(AdminLoggedin === "true"){
+        if(AdminLoggedin === "true" && BarberLoggedin === "false"){
             navigate("/admin-dashboard")
         }
     },[AdminLoggedin,navigate])

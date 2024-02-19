@@ -28,6 +28,7 @@ const Signin = () => {
       setEmail("")
       setPassword("")
       localStorage.setItem("AdminLoggedIn","true")
+      localStorage.setItem("BarberLoggedIn", "false")
       navigate("/admin-dashboard")
     } catch (error) {
       if (!error.status) {

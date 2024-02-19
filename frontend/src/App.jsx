@@ -19,18 +19,18 @@ const App = () => {
 
         <Route path="/" element={<Public />} />
 
-        <Route element={<ProtectedAuthRoute/>}>
-        <Route path="/admin-signin" element={<Signin />} />
-        <Route path="/admin-signup" element={<Signup />} />
-        <Route path="/admin-accountdetails" element={<AccountDetail />} />
+        <Route element={<ProtectedAuthRoute />}>
+          <Route path="/admin-signin" element={<Signin />} />
+          <Route path="/admin-signup" element={<Signup />} />
+          <Route path="/admin-accountdetails" element={<AccountDetail />} />
         </Route>
 
-        <Route element={<ProtectedRoute/>}>
-        <Route element={<DashLayout/>}>
-          <Route path="/admin-dashboard" element={<Home />} />
-          <Route path="/admin-dashboard/salon" element={<Salon />} />
-          <Route path="/admin-dashboard/editprofile" element={<EditProfile/>}/>
-        </Route>
+        <Route element={<ProtectedRoute />}>
+          <Route element={<DashLayout />}>
+            <Route path="/admin-dashboard" element={<Home />} />
+            <Route path="/admin-dashboard/salon" element={<Salon />} />
+            <Route path="/admin-dashboard/editprofile" element={<EditProfile />} />
+          </Route>
         </Route>
 
       </Routes>
