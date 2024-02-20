@@ -30,7 +30,7 @@ const ProtectedRoute = () => {
                 console.log('verifying refresh token')
                 try {
                     //const response = 
-                    await refresh()
+                    const {data} = await refresh()
                     //const { accessToken } = response.data
                     setTrueSuccess(true)
                 }

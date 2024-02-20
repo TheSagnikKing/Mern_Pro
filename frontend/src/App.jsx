@@ -11,6 +11,7 @@ import DashLayout from './components/Admin/DashLayout'
 import EditProfile from './features/Admin/dashboard/EditProfile/EditProfile'
 import ProtectedRoute from './features/Admin/auth/ProtectedRoute'
 import ProtectedAuthRoute from './features/Admin/auth/ProtectedAuthRoute'
+import PersistAdminInfo from './features/Admin/auth/PersistAdminInfo'
 
 const App = () => {
   return (
@@ -26,10 +27,12 @@ const App = () => {
         </Route>
 
         <Route element={<ProtectedRoute />}>
-          <Route element={<DashLayout />}>
-            <Route path="/admin-dashboard" element={<Home />} />
-            <Route path="/admin-dashboard/salon" element={<Salon />} />
-            <Route path="/admin-dashboard/editprofile" element={<EditProfile />} />
+          <Route element={<PersistAdminInfo />}>
+            <Route element={<DashLayout />}>
+              <Route path="/admin-dashboard" element={<Home />} />
+              <Route path="/admin-dashboard/salon" element={<Salon />} />
+              <Route path="/admin-dashboard/editprofile" element={<EditProfile />} />
+            </Route>
           </Route>
         </Route>
 

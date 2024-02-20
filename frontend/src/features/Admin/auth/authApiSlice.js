@@ -64,6 +64,13 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 }
             }
         }),
+        adminLoggedIn: builder.query({
+            query: () => ({
+                url: '/admin/auth/adminloggedin',
+                method: 'GET'
+            }),
+            
+        }),
     })
 })
 
@@ -72,5 +79,6 @@ export const {
     useSendLogoutMutation,
     useRefreshMutation,
     useRegisterMutation,
-    useUpdateAdminMutation
+    useUpdateAdminMutation,
+    useAdminLoggedInQuery
 } = authApiSlice 

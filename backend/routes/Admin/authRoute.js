@@ -17,5 +17,7 @@ router.route('/refresh')
 router.route('/logout')
     .post(authController.adminLogout)
 
+router.route('/adminloggedin')
+    .get(authController.AdminLoggedIn)
 
 module.exports = router
