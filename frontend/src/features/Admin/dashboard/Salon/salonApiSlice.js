@@ -14,14 +14,16 @@ export const authApiSlice = apiSlice.injectEndpoints({
             query: (email) => ({
                 url: `/admin/other/salon/salonlist?adminEmail=${email}`,
                 method: "GET"
-            })
+            }),
+            providesTags: ['Salon']
         }),
         createsalon: builder.mutation({
-            query: credentials => ({
-                url: '/other/salon/createsalon',
+            query: (salondata) => ({
+                url: '/admin/other/salon/createsalon',
                 method: 'POST',
-                body: { ...credentials }
-            })
+                body: { ...salondata }
+            }),
+            invalidatesTags: ['Salon']
         })
     })
 })

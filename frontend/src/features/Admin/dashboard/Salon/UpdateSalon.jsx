@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import './UpdateSalon.css'
+import { useLocation } from 'react-router-dom'
+import { IoLocationSharp } from 'react-icons/io5'
 
 const UpdateSalon = () => {
 
-    const [adminEmail, setAdminEmail] = useState("")
-    const [salonName, setSalonName] = useState("")
-    const [city, setCity] = useState("")
-    const [country, setCountry] = useState("")
+    const location = useLocation()
+    const salondata = location?.state
+
+    const [adminEmail, setAdminEmail] = useState(salondata?.adminEmail)
+    const [salonName, setSalonName] = useState(salondata?.salonName)
+    const [city, setCity] = useState(salondata?.city)
+    const [country, setCountry] = useState(salondata?.country)
     const [services, setServices] = useState([])
 
     let content;

@@ -37,7 +37,7 @@ const App = () => {
               <Route path="/admin-dashboard/salon">
                 <Route index element={<Salon />} />
                 <Route path="createsalon" element={<CreateSalon/>}/>
-                <Route path="updatesalon/:id" element={<UpdateSalon/>}/> 
+                <Route path="updatesalon" element={<UpdateSalon/>}/> 
               </Route>
 
             </Route>

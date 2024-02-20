@@ -1,7 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './CreateSalon.css'
+import { useCreatesalonMutation } from './salonApiSlice'
+import { useNavigate } from 'react-router-dom'
 
 const CreateSalon = () => {
+
+    const [createsalon,{
+        data:createSalondata,
+        isSuccess,
+        isFetching,
+        isError,
+        error
+    }] = useCreatesalonMutation()
 
     const [adminEmail, setAdminEmail] = useState("")
     const [salonName, setSalonName] = useState("")
@@ -9,25 +19,34 @@ const CreateSalon = () => {
     const [country, setCountry] = useState("")
     const [services, setServices] = useState([])
 
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if(isSuccess){
+            navigate("/admin-dashboard/salon")
+        }
+    },[navigate,isSuccess])
+
     let content;
 
     const createSalonHandler = () => {
-        const arrayservices = services.split(', ')
 
         const salondata = {
             adminEmail,
             salonName,
             city,
             country,
-            services:arrayservices
+            services:["hair","spa"]
         }
 
-        console.log(salondata)
+        createsalon(salondata)
     }
 
     content = (
         <main>
             <div className='admin_dashboard_createsalon_div'>
+                {isError && <h2 style={{color:"crimson"}}>{error?.data?.message}</h2>}
+
                 <h2>Create Your own Salon</h2>
 
                 <div>
