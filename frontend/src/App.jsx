@@ -12,6 +12,8 @@ import EditProfile from './features/Admin/dashboard/EditProfile/EditProfile'
 import ProtectedRoute from './features/Admin/auth/ProtectedRoute'
 import ProtectedAuthRoute from './features/Admin/auth/ProtectedAuthRoute'
 import PersistAdminInfo from './features/Admin/auth/PersistAdminInfo'
+import CreateSalon from './features/Admin/dashboard/Salon/CreateSalon'
+import UpdateSalon from './features/Admin/dashboard/Salon/UpdateSalon'
 
 const App = () => {
   return (
@@ -30,8 +32,14 @@ const App = () => {
           <Route element={<PersistAdminInfo />}>
             <Route element={<DashLayout />}>
               <Route path="/admin-dashboard" element={<Home />} />
-              <Route path="/admin-dashboard/salon" element={<Salon />} />
               <Route path="/admin-dashboard/editprofile" element={<EditProfile />} />
+
+              <Route path="/admin-dashboard/salon">
+                <Route index element={<Salon />} />
+                <Route path="createsalon" element={<CreateSalon/>}/>
+                <Route path="updatesalon/:id" element={<UpdateSalon/>}/> 
+              </Route>
+
             </Route>
           </Route>
         </Route>
