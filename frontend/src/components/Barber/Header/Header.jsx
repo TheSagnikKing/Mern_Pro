@@ -7,9 +7,9 @@ import { selectCurrentAdminInfo } from '../../../features/Admin/auth/authSlice'
 
 const Header = () => {
 
-  const [logout, { isFetching }] = useSendLogoutMutation()
+  // const [logout, { isFetching }] = useSendLogoutMutation()
 
-  const currentAdmin = useSelector(selectCurrentAdminInfo)
+  // const currentAdmin = useSelector(selectCurrentAdminInfo)
   // aibhabe user display na kore ami arekta wrapper bania ni jeta puro dashboard ke wrap korbe
   // ar sei wrapper modhe ami jwt-decode dia email paejabo paegele ami setadia current user ke query kornebo 
   //  ar korar pore setake createSlice save kordebo so everytime ami current userer data pabo. Ata best way
@@ -22,38 +22,45 @@ const Header = () => {
   // dia debo
   // step 4: ami setake nia createSlice save koredebo . So protekpage refresh amr kache always admin data thakbe.
 
-  console.log("useSendLogoutMutation ", useSendLogoutMutation())
+  // console.log("useSendLogoutMutation ", useSendLogoutMutation())
+
+  // const navigate = useNavigate()
+
+  // const editClicked = () => {
+  //   navigate("/admin-dashboard/editprofile")
+  // }
+
+  // const logoutClicked = async () => {
+  //   try {
+  //     await logout().unwrap()
+  //     localStorage.setItem("AdminLoggedIn", "false")
+  //     localStorage.setItem("BarberLoggedIn", "false")
+
+  //     navigate("/admin-signin")
+
+  //   } catch (error) {
+  //     console.log(error?.data)
+  //   }
+
+  // }
 
   const navigate = useNavigate()
 
   const editClicked = () => {
-    navigate("/admin-dashboard/editprofile")
-  }
-
-  const logoutClicked = async () => {
-    try {
-      await logout().unwrap()
-      localStorage.setItem("AdminLoggedIn", "false")
-      localStorage.setItem("BarberLoggedIn", "false")
-
-      navigate("/admin-signin")
-
-    } catch (error) {
-      console.log(error?.data)
-    }
-
+    navigate('/barber-dashboard/editprofile')
   }
 
   const content = (
     <main className='admin__header__main'>
-      <h1>Admin Header</h1>
+      <h1>Barber Header</h1>
 
       <div>
         <div style={{width:"4.5rem",height:"4.5rem",borderRadius:"50%",background:"red"}}><img style={{width:"100%",height:"100%",borderRadius:"50%"}}
-        src={`${currentAdmin?.profile[0]?.url ? currentAdmin?.profile[0]?.url : ""}`} alt="" /></div>
-        <h2>User: &nbsp; {currentAdmin?.name}</h2>
+        src="" alt="" /></div>
+        <h2>User: &nbsp; </h2>
         <button onClick={editClicked}>Edit Profile</button>
-        {isFetching ? <h1 style={{ color: "#fff" }}>Loader</h1> : <button onClick={logoutClicked}>Logout</button>}
+        {/* {isFetching ? <h1 style={{ color: "#fff" }}>Loader</h1> : <button onClick={logoutClicked}>Logout</button>} */}
+        <button onClick={() => {}}>Logout</button>
       </div>
     </main>
   )

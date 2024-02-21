@@ -15,6 +15,14 @@ import PersistAdminInfo from './features/Admin/auth/PersistAdminInfo'
 import CreateSalon from './features/Admin/dashboard/Salon/CreateSalon'
 import UpdateSalon from './features/Admin/dashboard/Salon/UpdateSalon'
 
+import BarberSignin from './features/Barber/auth/Signin/Signin'
+import BarberSignup from './features/Barber/auth/Signup/Signup'
+import BarberAccountDetail  from './features/Barber/auth/AccountDetail/AccountDetail'
+import BarberDashLayout from './components/Barber/DashLayout'
+import BarberHome from './features/Barber/dashboard/Home/Home'
+import BarberSalon from './features/Barber/dashboard/Salon/Salon'
+import BarberEditProfile from './features/Barber/dashboard/EditProfile/EditProfile'
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -22,6 +30,8 @@ const App = () => {
 
         <Route path="/" element={<Public />} />
 
+
+        {/* FOR ADMIN */}
         <Route element={<ProtectedAuthRoute />}>
           <Route path="/admin-signin" element={<Signin />} />
           <Route path="/admin-signup" element={<Signup />} />
@@ -44,6 +54,16 @@ const App = () => {
           </Route>
         </Route>
 
+        {/* FOR BARBER */}
+        <Route path="/barber-signin" element={<BarberSignin/>}/>
+        <Route path="/barber-signup" element={<BarberSignup />} />
+        <Route path="/barber-accountdetail" element={<BarberAccountDetail/>}/>
+
+        <Route element={<BarberDashLayout/>}>
+          <Route path="/barber-dashboard" element={<BarberHome/>}/>
+          <Route path="/barber-dashboard/salon" element={<BarberSalon/>}/>
+          <Route path="/barber-dashboard/editprofile" element={<BarberEditProfile/>}/>
+        </Route>
       </Routes>
     </BrowserRouter>
   )
