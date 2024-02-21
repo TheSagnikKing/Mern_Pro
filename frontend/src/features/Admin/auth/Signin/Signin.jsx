@@ -3,7 +3,8 @@ import "./Signin.css"
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../authSlice'
-import { useLoginMutation } from '../authApiSlice'
+import { useGoogleLoginMutation, useLoginMutation } from '../authApiSlice'
+import { GoogleLogin } from '@react-oauth/google';
 
 const Signin = () => {
 
@@ -27,7 +28,7 @@ const Signin = () => {
       console.log(accessToken)
       setEmail("")
       setPassword("")
-      localStorage.setItem("AdminLoggedIn","true")
+      localStorage.setItem("AdminLoggedIn", "true")
       localStorage.setItem("BarberLoggedIn", "false")
       navigate("/admin-dashboard")
     } catch (error) {
@@ -42,6 +43,43 @@ const Signin = () => {
       }
     }
   }
+
+  const [
+    googlelogin,
+    {
+      data: googlelogindata,
+      isFetching: googlefetching,
+      isSuccess: googleSuccess,
+      isError: googleError,
+      error: googleerrordata
+    }
+  ] = useGoogleLoginMutation()
+
+  useEffect(() => {
+    if(googleSuccess){
+      dispatch(setCredentials({accessToken:googleSuccess.accessToken}))
+      localStorage.setItem("AdminLoggedIn", "true")
+      localStorage.setItem("BarberLoggedIn", "false")
+      navigate("/admin-dashboard")
+    }
+  },[googleSuccess,dispatch,navigate])
+
+  console.log(googlelogindata)
+
+
+  //Google Admin Action
+  const responseMessage = async (response) => {
+    console.log(response.credential)
+    if (response.credential) {
+      googlelogin({token:response.credential})
+    }
+
+    // dispatch(AdminGoogleloginAction(response.credential, navigate))
+  };
+
+  const errorMessage = (error) => {
+    console.log(error);
+  };
 
   const content = (
     <main className='admin__signin__main'>
@@ -74,6 +112,18 @@ const Signin = () => {
         {
           isLoading ? <button>Loader</button> : <button onClick={SigninHandler}>Signin</button>
         }
+
+        <div>
+          <GoogleLogin
+            onSuccess={responseMessage}
+            onError={errorMessage}
+            size='large'
+            shape='circle'
+            width={310}
+            logo_alignment='left'
+            text='continue_with'
+          />
+        </div>
 
         <Link to="/admin-signup" >Signup</Link>
       </div>

@@ -15,11 +15,23 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 body: { ...credentials }
             })
         }),
+        googleLogin: builder.mutation({
+            query: query => ({
+                url: `/admin/auth/googlesignin?token=${query.token}`,
+                method: 'POST'
+            })
+        }),
         register: builder.mutation({
             query: (credentials) => ({
                 url: '/admin/auth/signup',
                 method: 'POST',
                 body: credentials
+            })
+        }),
+        googleregister: builder.mutation({
+            query: (query) => ({
+                url: `/admin/auth/googlesignup?token=${query.token}`,
+                method: 'POST'
             })
         }),
         updateAdmin: builder.mutation({
@@ -37,7 +49,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
                 try {
                     const { data } = await queryFulfilled
-                    console.log("I am logout slice ",data?.message)
+                    console.log("I am logout slice ", data?.message)
                     dispatch(logOut())
                     setTimeout(() => {
                         dispatch(apiSlice.util.resetApiState()) //rtk query state jodi kono cache thake segulokao reset kore debo
@@ -69,16 +81,18 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 url: '/admin/auth/adminloggedin',
                 method: 'GET'
             }),
-            
+
         }),
     })
 })
 
 export const {
     useLoginMutation,
+    useGoogleLoginMutation,
     useSendLogoutMutation,
     useRefreshMutation,
     useRegisterMutation,
+    useGoogleregisterMutation,
     useUpdateAdminMutation,
     useAdminLoggedInQuery
 } = authApiSlice 

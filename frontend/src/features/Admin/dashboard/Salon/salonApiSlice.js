@@ -24,11 +24,28 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 body: { ...salondata }
             }),
             invalidatesTags: ['Salon']
+        }),
+        updatesalon: builder.mutation({
+            query: (salondata) => ({
+                url: '/admin/other/salon/updatesalon',
+                method: 'PUT',
+                body: salondata
+            }),
+            invalidatesTags: ['Salon']
+        }),
+        deletesalon: builder.mutation({
+            query: (salonId) => ({
+                url: `/admin/other/salon/deletesalon?salonId=${salonId}`,
+                method: 'DELETE'
+            }),
+            invalidatesTags: ['Salon']
         })
     })
 })
 
 export const {
     useGetsalonListQuery,
-    useCreatesalonMutation
+    useCreatesalonMutation,
+    useDeletesalonMutation,
+    useUpdatesalonMutation
 } = authApiSlice 

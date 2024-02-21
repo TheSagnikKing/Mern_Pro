@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Salon.css"
 import { selectCurrentAdminInfo } from '../../auth/authSlice'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { useGetsalonListQuery } from './salonApiSlice'
+import { useDeletesalonMutation, useGetsalonListQuery } from './salonApiSlice'
 
 const Salon = () => {
 
@@ -21,6 +21,26 @@ const Salon = () => {
 
   const updateSalonHandler = (salon) => {
     navigate(`/admin-dashboard/salon/updatesalon`,{ state: salon})
+  }
+
+  const [deletesalon,{
+    isFetching:deleteisFetching,
+    isSuccess:deleteisSuccess,
+    data:deletesalondata,
+    isError:deleteisError,
+    error:deleteError
+  }] = useDeletesalonMutation()
+
+  useEffect(() => {
+    if(deleteisSuccess){
+      alert(deletesalondata?.message)
+    }else if(deleteError){
+      alert(error?.data?.message)
+    }
+  },[deleteError,deleteisSuccess])
+
+  const deleteSalonHandler = (salonId) => {
+    deletesalon(salonId)
   }
 
   const content = (
@@ -50,7 +70,7 @@ const Salon = () => {
                 <p>{s.country}</p>
                 <p>{s.city}</p>
                 <p>{s.services.map((ser) => <span key={ser} style={{marginRight:"1rem"}}>{ser}</span>)}</p>
-                <button>Delete</button>
+                <button onClick={() => deleteSalonHandler(s._id)}>Delete</button>
                 <button onClick={() => updateSalonHandler(s)}>Update</button>
               </div>
             ))
