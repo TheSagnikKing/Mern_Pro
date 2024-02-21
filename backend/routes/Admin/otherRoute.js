@@ -23,4 +23,7 @@ router.route('/salon/updatesalon')
 router.route('/salon/deletesalon')
     .delete(otherController.deleteSalon)
 
+router.route('/admin/image/upload')
+    .post(otherController.uploadProfile)
+
 module.exports = router

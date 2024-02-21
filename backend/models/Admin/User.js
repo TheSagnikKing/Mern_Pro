@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const userSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: true
+        // required: true
     },
     password: {
         type: String,
@@ -21,7 +21,17 @@ const userSchema = new mongoose.Schema({
     },
     gender:{
         type:String
-    }
+    },
+    profile:[
+        {
+        public_id:{
+          type:String
+        },
+        url:{
+          type:String,
+        }
+      }
+    ]
 })
 
 module.exports = mongoose.model('AdminUser', userSchema)

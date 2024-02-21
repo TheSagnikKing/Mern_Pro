@@ -13,9 +13,9 @@ const REFRESH_TOKEN_SECRET = "REFRESH_TOKEN_SECRET"
 const adminLogin = async (req, res) => {
     const { email, password } = req.body
 
-    // if (!email || !password) {
-    //     return res.status(400).json({ message: 'All fields are required' })
-    // }
+    if (!email || !password) {
+        return res.status(400).json({ message: 'All fields are required' })
+    }
 
     const foundUser = await User.findOne({ email, role: 'Admin' }).exec()
 
@@ -35,7 +35,7 @@ const adminLogin = async (req, res) => {
             }
         },
         ACCESS_TOKEN_SECRET,
-        { expiresIn: '20s' }
+        { expiresIn: '1m' }
     )
 
     const refreshToken = jwt.sign(
@@ -97,7 +97,7 @@ const googleAdminLogin = async (req, res) => {
                 }
             },
             ACCESS_TOKEN_SECRET,
-            { expiresIn: '20s' }
+            { expiresIn: '1m' }
         )
 
         const refreshToken = jwt.sign(
@@ -152,7 +152,7 @@ const adminRefresh = (req, res) => {
                     }
                 },
                 ACCESS_TOKEN_SECRET,
-                { expiresIn: '20s' }
+                { expiresIn: '1m' }
             )
 
             res.json({ accessToken })
@@ -295,7 +295,7 @@ const updateAdmin = async (req, res) => {
             }
         },
         ACCESS_TOKEN_SECRET,
-        { expiresIn: '20s' }
+        { expiresIn: '1m' }
     )
 
     const refreshToken = jwt.sign(

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { selectCurrentAdminInfo } from '../../auth/authSlice'
 import { useUpdateAdminMutation } from '../../auth/authApiSlice'
 import { useNavigate } from 'react-router-dom'
+import { useUploadAdminImageMutation } from './editApiSlice'
 
 const EditProfile = () => {
 
@@ -13,7 +14,8 @@ const EditProfile = () => {
     const [name, setName] = useState("")
     const [mobileNumber, setMobileNumber] = useState("")
     const [gender, setGender] = useState("")
-
+    
+    console.log(currentAdmin)
     useEffect(() => {
         if(currentAdmin){
             setEmail(currentAdmin?.email)
@@ -48,6 +50,35 @@ const EditProfile = () => {
 
         updateAdmin(updateData)
     }
+
+    console.log(currentAdmin?.profile[0]?.url)
+
+    const [
+        uploadimage,{
+            data:uploaddata,
+            isSuccess:uploadSuccess,
+            isFetching:uploadfetching,
+            isError:uploadError,
+            error:uploaderrordata
+        }
+    ] = useUploadAdminImageMutation()
+
+
+    const [setprofilepic, Setsetprofilepic] = useState("")
+
+
+  console.log(setprofilepic)
+
+
+  const profileupdateHandler = () => {
+    
+    const formData = new FormData();
+
+    formData.append('email', currentAdmin?.email)
+    formData.append('profile', setprofilepic)
+
+    uploadimage(formData)
+  }
 
   const content = (
     <main className='admin__edit__main'>
@@ -90,6 +121,28 @@ const EditProfile = () => {
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
                 />
+            </div>
+
+            <div>
+            <input
+              type='file'
+              onChange={(e) => Setsetprofilepic(e.target.files[0])}
+            />
+
+            <button onClick={profileupdateHandler} style={{
+              height:"3.5rem",
+              width:"10rem",
+              background:"#f1f6fc",
+              boxShadow:"0px 0px 6px rgba(0,0,0,0.6)",
+              cursor:"pointer",
+              borderRadius:"5px",
+              border:"none",
+              fontSize:"1.2rem"
+            }}><p style={{fontSize:"1.2rem"}}>Upload</p></button>
+          </div>
+
+            <div className='ad_profile'>
+                <img src={`${currentAdmin?.profile[0]?.url ? currentAdmin?.profile[0]?.url : ""}`} alt="" />
             </div>
 
             <button onClick={update}>Update</button>

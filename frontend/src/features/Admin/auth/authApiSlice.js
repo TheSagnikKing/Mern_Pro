@@ -81,7 +81,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 url: '/admin/auth/adminloggedin',
                 method: 'GET'
             }),
-
+            providesTags: ['Admin']
         }),
     })
 })

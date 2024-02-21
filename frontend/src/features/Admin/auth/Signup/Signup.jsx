@@ -57,7 +57,7 @@ const Signup = () => {
 
       useEffect(() => {
         if (googleSuccess) {
-            navigate("/admin-accountdetails", { state: { googlesignupdata } })
+            navigate("/admin-accountdetails", { state: { signupdata:googlesignupdata } })
         }
     }, [navigate, googleSuccess])
 
