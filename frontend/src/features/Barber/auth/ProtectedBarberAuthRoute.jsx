@@ -12,11 +12,18 @@ const ProtectedBarberAuthRoute = () => {
     const AdminLoggedin = localStorage.getItem("AdminLoggedIn")
     const BarberLoggedin = localStorage.getItem("BarberLoggedIn")
 
+    console.log("From Barber BarberLoggedin",BarberLoggedin)
+    console.log("From Barber AdminLoggedin",AdminLoggedin)
+
     const navigate = useNavigate()
     
     useEffect(() => {
         if(AdminLoggedin === "false" && BarberLoggedin === "true"){
             navigate("/barber-dashboard")
+        }else if(AdminLoggedin === "true" && BarberLoggedin === "false"){
+          navigate("/admin-dashboard")
+        }else{
+          
         }
     },[BarberLoggedin,AdminLoggedin,navigate])
 
