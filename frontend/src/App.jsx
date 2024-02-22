@@ -59,7 +59,7 @@ const App = () => {
         </Route>
 
         {/* FOR BARBER */}
-        {/* <Route element={<ProtectedBarberAuthRoute />}>
+        <Route element={<ProtectedBarberAuthRoute />}>
           <Route path="/barber-signin" element={<BarberSignin />} />
         </Route>
         
@@ -71,7 +71,7 @@ const App = () => {
               <Route path="/barber-dashboard/editprofile" element={<BarberEditProfile />} />
             </Route>
           </Route>
-        </Route> */}
+        </Route>
 
 
       </Routes>
