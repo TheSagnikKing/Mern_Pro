@@ -4,8 +4,8 @@ import { setCredentials } from '../../features/Barber/auth/barberauthSlice'
 const baseQuery = fetchBaseQuery({
     baseUrl: 'http://localhost:8000',
     credentials: 'include',
-    prepareHeaders: (headers, { getState }) => {
-        const barbertoken = getState().barberauth.barbertoken
+    prepareHeaders: (headers, { getState }) => { 
+        const barbertoken = getState().barberauth.barbertoken //akhane token asche barberauth theke
 
         if (barbertoken) {
             headers.set("authorization", `Bearer ${barbertoken}`)

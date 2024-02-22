@@ -35,7 +35,7 @@ const barberLogin = async (req, res) => {
             }
         },
         ACCESS_TOKEN_SECRET_BARBER,
-        { expiresIn: '1m' }
+        { expiresIn: '10s' }
     )
 
     const refreshToken = jwt.sign(
@@ -97,7 +97,7 @@ const googleBarberLogin = async (req, res) => {
                 }
             },
             ACCESS_TOKEN_SECRET_BARBER,
-            { expiresIn: '1m' }
+            { expiresIn: '10s' }
         )
 
         const refreshToken = jwt.sign(
@@ -152,7 +152,7 @@ const barberRefresh = (req, res) => {
                     }
                 },
                 ACCESS_TOKEN_SECRET_BARBER,
-                { expiresIn: '1m' }
+                { expiresIn: '10s' }
             )
 
             res.json({ accessToken })
@@ -295,7 +295,7 @@ const updateBarber = async (req, res) => {
             }
         },
         ACCESS_TOKEN_SECRET_BARBER,
-        { expiresIn: '1m' }
+        { expiresIn: '10s' }
     )
 
     const refreshToken = jwt.sign(

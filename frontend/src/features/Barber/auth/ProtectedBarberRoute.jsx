@@ -56,7 +56,7 @@ const ProtectedBarberRoute = () => {
             <>
             <main style={{padding:"2rem",height:"100vh",width:"100%",background:"#efefef"}}>
              <h1 style={{color:"crimson",background:"#fff",width:"30rem",height:"4.5rem",display:"flex",justifyContent:"center",alignItems:"center",boxShadow:"0px 0px 4px rgba(0,0,0,0.6)",borderRadius:"5px"}}>{error?.data?.message}</h1>
-             <Link to="/admin-signin">
+             <Link to="/barber-signin">
                 <h1 style={{
                     marginTop:"2rem",
                     color:"red"

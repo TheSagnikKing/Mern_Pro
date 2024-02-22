@@ -1,7 +1,25 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Public = () => {
+
+  const AdminLoggedin = localStorage.getItem("AdminLoggedIn")
+  const BarberLoggedin = localStorage.getItem("BarberLoggedIn")
+
+  console.log("From Barber BarberLoggedin", BarberLoggedin)
+  console.log("From Barber AdminLoggedin", AdminLoggedin)
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (AdminLoggedin === "false" && BarberLoggedin === "true") {
+      navigate("/barber-dashboard")
+    } else if (AdminLoggedin === "true" && BarberLoggedin === "false") {
+      navigate("/admin-dashboard")
+    } else {
+
+    }
+  }, [BarberLoggedin, AdminLoggedin, navigate])
 
   const content = (
     <main className='public__main'>
