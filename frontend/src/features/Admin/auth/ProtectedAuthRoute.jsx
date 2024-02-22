@@ -18,7 +18,7 @@ const ProtectedAuthRoute = () => {
         if(AdminLoggedin === "true" && BarberLoggedin === "false"){
             navigate("/admin-dashboard")
         }
-    },[AdminLoggedin,navigate])
+    },[AdminLoggedin,BarberLoggedin,navigate])
 
   return (
     <div><Outlet/></div>

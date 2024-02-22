@@ -43,10 +43,18 @@
 
 
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { selectCurrentBarberInfo } from '../../auth/barberauthSlice'
 
 const Home = () => {
+
+  const currentBarber = useSelector(selectCurrentBarberInfo)
+
   return (
-    <div>Barber Home Page</div>
+    <div><h1>Barber Home Page</h1>
+      <h1>{currentBarber?.email}</h1>
+      <h1>{currentBarber?.name}</h1>
+    </div>
   )
 }
 

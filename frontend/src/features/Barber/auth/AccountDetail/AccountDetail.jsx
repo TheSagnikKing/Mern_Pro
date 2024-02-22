@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import "./AccountDetail.css"
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useUpdateAdminMutation } from '../authApiSlice'
+
 import { useDispatch } from 'react-redux'
-import { setCredentials } from '../authSlice'
+
 
 const AccountDetail = () => {
 

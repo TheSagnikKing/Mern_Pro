@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useAdminLoggedInQuery } from './authApiSlice'
 import { Outlet } from 'react-router-dom'
-import { AdminLoggedinCredentials } from './authSlice'
+import { barberLoggedinCredentials } from './barberauthSlice'
+import { useBarberLoggedInQuery } from './barberauthApiSlice'
 
-
-const PersistAdminInfo = () => {
+const PersistBarberInfo = () => {
 
     // const token = useSelector(selectCurrentToken)
 
@@ -14,24 +13,24 @@ const PersistAdminInfo = () => {
     // //   {User?.UserInfo?.email}
 
     const {
-        data:loggedinAdmindata,
+        data:loggedinBarberdata,
         isSuccess,
         isError,
         error,
         isFetching,
-    } = useAdminLoggedInQuery(undefined)
+    } = useBarberLoggedInQuery(undefined)
 
-    console.log("Persist Admin Info ",loggedinAdmindata)
+    console.log("Persist Barber Info ",loggedinBarberdata)
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(AdminLoggedinCredentials(loggedinAdmindata))
-    },[loggedinAdmindata,dispatch])
+        dispatch(barberLoggedinCredentials(loggedinBarberdata))
+    },[loggedinBarberdata,dispatch])
 
     return (
         <div><Outlet/></div>
     )
 }
 
-export default PersistAdminInfo
+export default PersistBarberInfo

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useAdminLoggedInQuery } from './authApiSlice'
-import { Outlet } from 'react-router-dom'
-import { AdminLoggedinCredentials } from './authSlice'
 
+import { Outlet } from 'react-router-dom'
+import { useAdminLoggedInQuery } from './authApiSlice'
+import { AdminLoggedinCredentials } from './authSlice'
 
 const PersistAdminInfo = () => {
 
@@ -19,7 +19,7 @@ const PersistAdminInfo = () => {
         isError,
         error,
         isFetching,
-    } = useAdminLoggedInQuery(undefined)
+    } = useAdminLoggedInQuery()
 
     console.log("Persist Admin Info ",loggedinAdmindata)
 

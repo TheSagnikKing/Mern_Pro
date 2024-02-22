@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { useRef } from 'react'
-import { useRefreshMutation } from "../auth/authApiSlice"
-import { selectCurrentToken } from './authSlice'
+import { useRefreshMutation } from './barberauthApiSlice'
+import { selectCurrentToken } from './barberauthSlice'
 
-const ProtectedRoute = () => {
+const ProtectedBarberRoute = () => {
 
     const token = useSelector(selectCurrentToken)
     const effectRan = useRef(false)
@@ -27,7 +27,7 @@ const ProtectedRoute = () => {
         if (effectRan.current === true || NODE_ENV !== 'development') { // React 18 Strict Mode
 
             const verifyRefreshToken = async () => {
-                console.log('verifying refresh token')
+                console.log('verifying barber refresh token')
                 try {
                     //const response = 
                     const {data} = await refresh()
@@ -79,4 +79,4 @@ const ProtectedRoute = () => {
     return content
 }
 
-export default ProtectedRoute
+export default ProtectedBarberRoute

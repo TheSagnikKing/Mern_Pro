@@ -17,11 +17,14 @@ import UpdateSalon from './features/Admin/dashboard/Salon/UpdateSalon'
 
 import BarberSignin from './features/Barber/auth/Signin/Signin'
 import BarberSignup from './features/Barber/auth/Signup/Signup'
-import BarberAccountDetail  from './features/Barber/auth/AccountDetail/AccountDetail'
+import BarberAccountDetail from './features/Barber/auth/AccountDetail/AccountDetail'
 import BarberDashLayout from './components/Barber/DashLayout'
 import BarberHome from './features/Barber/dashboard/Home/Home'
 import BarberSalon from './features/Barber/dashboard/Salon/Salon'
 import BarberEditProfile from './features/Barber/dashboard/EditProfile/EditProfile'
+import PersistBarberInfo from './features/Barber/auth/PersistBarberInfo'
+import ProtectedBarberRoute from './features/Barber/auth/ProtectedBarberRoute'
+import ProtectedBarberAuthRoute from './features/Barber/auth/ProtectedBarberAuthRoute'
 
 const App = () => {
   return (
@@ -46,24 +49,31 @@ const App = () => {
 
               <Route path="/admin-dashboard/salon">
                 <Route index element={<Salon />} />
-                <Route path="createsalon" element={<CreateSalon/>}/>
-                <Route path="updatesalon" element={<UpdateSalon/>}/> 
+                <Route path="createsalon" element={<CreateSalon />} />
+                <Route path="updatesalon" element={<UpdateSalon />} />
               </Route>
 
             </Route>
           </Route>
+
         </Route>
 
         {/* FOR BARBER */}
-        <Route path="/barber-signin" element={<BarberSignin/>}/>
-        <Route path="/barber-signup" element={<BarberSignup />} />
-        <Route path="/barber-accountdetail" element={<BarberAccountDetail/>}/>
-
-        <Route element={<BarberDashLayout/>}>
-          <Route path="/barber-dashboard" element={<BarberHome/>}/>
-          <Route path="/barber-dashboard/salon" element={<BarberSalon/>}/>
-          <Route path="/barber-dashboard/editprofile" element={<BarberEditProfile/>}/>
+        {/* <Route element={<ProtectedBarberAuthRoute />}>
+          <Route path="/barber-signin" element={<BarberSignin />} />
         </Route>
+        
+        <Route element={<ProtectedBarberRoute />}>
+          <Route element={<PersistBarberInfo />}>
+            <Route element={<BarberDashLayout />}>
+              <Route path="/barber-dashboard" element={<BarberHome />} />
+              <Route path="/barber-dashboard/salon" element={<BarberSalon />} />
+              <Route path="/barber-dashboard/editprofile" element={<BarberEditProfile />} />
+            </Route>
+          </Route>
+        </Route> */}
+
+
       </Routes>
     </BrowserRouter>
   )

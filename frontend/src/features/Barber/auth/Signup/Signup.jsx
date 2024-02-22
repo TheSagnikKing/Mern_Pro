@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./Signup.css"
 import { Link, useNavigate } from 'react-router-dom'
-import { useGoogleregisterMutation, useRegisterMutation } from '../authApiSlice'
-import { GoogleLogin } from '@react-oauth/google'
 
 const Signup = () => {
 
@@ -118,19 +116,6 @@ const Signup = () => {
                     </div>
 
                     <button onClick={SignupHandler}>Signup</button>
-
-
-                    <div>
-                        <GoogleLogin
-                            // onSuccess={responseMessage}
-                            // onError={errorMessage}
-                            size='large'
-                            shape='circle'
-                            width={310}
-                            logo_alignment='left'
-                            text='continue_with'
-                        />
-                    </div>
 
                     <Link to="/barber-signin" >Signin</Link>
                 </div>

@@ -28,6 +28,10 @@ app.use(express.static("uploads"));
 app.use('/admin/auth', require('./routes/Admin/authRoute'))
 app.use('/admin/other', require('./routes/Admin/otherRoute'))
 
+//Barber Routes
+app.use('/barber/auth', require('./routes/Barber/authRoute'))
+app.use('/barber/other', require('./routes/Barber/otherRoute'))
+
 const PORT = 8000
 
 // Generic error handler middleware

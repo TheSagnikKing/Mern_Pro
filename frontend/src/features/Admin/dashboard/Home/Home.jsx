@@ -17,7 +17,7 @@ const Home = () => {
     fetchsalon()
   }
 
-  console.log(data)
+  console.log("I am current admin ",currentAdmin)
 
   if (isFetching) {
     content = <h1>Loader</h1>

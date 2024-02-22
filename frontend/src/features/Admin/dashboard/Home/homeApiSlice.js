@@ -5,10 +5,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         getSalon: builder.query({
             query: () => ({
                 url: '/admin/other/salon',
-                method: 'GET',
-                validateStatus: (response, result) => {
-                    return response.status === 200 && !result.isError
-                }       
+                method: 'GET'     
             })
         })
     }),
