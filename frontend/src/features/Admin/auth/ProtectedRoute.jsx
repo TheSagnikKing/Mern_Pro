@@ -20,7 +20,7 @@ const ProtectedRoute = () => {
         error
     }] = useRefreshMutation()
 
-    const NODE_ENV = 'development'
+    const NODE_ENV = 'production'
 
     useEffect(() => {
 

@@ -3,17 +3,34 @@ const cors = require("cors")
 const cookieParser = require('cookie-parser');
 const connectDB = require("./config/db")
 const fileUpload = require("express-fileupload");
+const compression = require('compression')
 
 connectDB();
 
 const app = express()
 
+
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "http://localhost:4173",
     credentials: true
 }))
 app.use(express.json())
 app.use(cookieParser());
+
+
+app.use(compression({
+    level: 9, // Compression level (0 to 9)
+    threshold: 0, // Minimum size to compress (in bytes)
+    filter: (req, res) => {
+        if (req.headers['x-no-compression']) {
+            // Don't compress responses with this header
+            return false;
+        }
+        return compression.filter(req, res);
+    },
+}));
+
+// app.use(compression())
 
 app.use(fileUpload({
     debug: true,

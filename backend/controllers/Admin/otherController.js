@@ -170,71 +170,73 @@ cloudinary.config({
     api_secret: "fGcEwjBTYj7rPrIxlSV5cubtZPc"
 });
 
-exports.uploadProfile = async (req, res, next) => {
-    try {
-        const profile = req.files.profile;
-        let email = req.body.email;
+// const uploadProfile = async (req, res, next) => {
+//     try {
+//         const profile = req.files.profile;
+//         let email = req.body.email;
 
-        //Validate Image
-        const fileSize = profile.size / 1000;
-        const fileExt = profile.name.split(".")[1];
+//         //Validate Image
+//         const fileSize = profile.size / 1000;
+//         const fileExt = profile.name.split(".")[1];
 
-        if (fileSize > 500) {
-            return res
-                .status(400)
-                .json({ message: "file size must be lower than 500kb" });
-        }
+//         if (fileSize > 500) {
+//             return res
+//                 .status(400)
+//                 .json({ message: "file size must be lower than 500kb" });
+//         }
 
-        if (!["jpg", "png", "jfif"].includes(fileExt)) {
-            return res
-                .status(400)
-                .json({ message: "file extension must be jpg or png" });
-        }
+//         if (!["jpg", "png", "jfif"].includes(fileExt)) {
+//             return res
+//                 .status(400)
+//                 .json({ message: "file extension must be jpg or png" });
+//         }
 
-        // Generate a unique public_id based on the original file name
-        const public_id = `${profile.name.split(".")[0]}`;
+//         // Generate a unique public_id based on the original file name
+//         const public_id = `${profile.name.split(".")[0]}`;
 
-        // Upload the file to Cloudinary
-        //image upload korar jonno expresser bydefault kono req object thakena orjonno amake alada kore
-        //package like express-fileupload or multer use korte hbe nailes req.files.profile error show korbe
-        cloudinary.uploader.upload(profile.tempFilePath, {
-            public_id: public_id,
-            folder: "mernpro",
-        })
-            .then(async (image) => {
+//         // Upload the file to Cloudinary
+//         //image upload korar jonno expresser bydefault kono req object thakena orjonno amake alada kore
+//         //package like express-fileupload or multer use korte hbe nailes req.files.profile error show korbe
+//         cloudinary.uploader.upload(profile.tempFilePath, {
+//             public_id: public_id,
+//             folder: "mernpro",
+//         })
+//             .then(async (image) => {
 
-                // Delete the temporary file after uploading to Cloudinary
-                fs.unlink(profile.tempFilePath, (err) => {
-                    if (err) {
-                        console.error(err);
-                    }
-                });
+//                 // Delete the temporary file after uploading to Cloudinary
+//                 fs.unlink(profile.tempFilePath, (err) => {
+//                     if (err) {
+//                         console.error(err);
+//                     }
+//                 });
 
-                const imageUploaded = await Student.create({
-                    profile: {
-                        public_id: [image.public_id,],
-                        url: [image.url],
-                    },
-                });
+//                 const imageUploaded = await User.create({
+//                     profile: {
+//                         public_id: [image.public_id,],
+//                         url: [image.url],
+//                     },
+//                 });
 
 
-                res.status(200).json({
-                    success: true,
-                    message: "File Uploaded successfully",
-                    imageUploaded
-                });
-            })
-            .catch((err) => {
-                console.error(err);
-                res.status(500).json({ message: "Cloudinary upload failed" });
-            });
-        ;
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Internal Server Error" });
-    }
-}
+//                 res.status(200).json({
+//                     success: true,
+//                     message: "File Uploaded successfully",
+//                     imageUploaded
+//                 });
+//             })
+//             .catch((err) => {
+//                 console.error(err);
+//                 res.status(500).json({ message: "Cloudinary upload failed" });
+//             });
+//         ;
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: "Internal Server Error" });
+//     }
+// }
 
+
+// VVP npm i sharp .This package is used to convert jpg,png images to webp formats
 
 const uploadProfile = async (req, res, next) => {
     try {

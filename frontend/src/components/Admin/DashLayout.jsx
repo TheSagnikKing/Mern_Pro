@@ -1,20 +1,53 @@
-import React, { useState } from 'react'
-import Sidebar from './Sidebar/Sidebar'
-import { Outlet } from 'react-router-dom'
-import Footer from './Footer/Footer'
-import Header from './Header/Header'
+// import React, { useState } from 'react'
+// import Sidebar from './Sidebar/Sidebar'
+// import { Outlet } from 'react-router-dom'
+// import Footer from './Footer/Footer'
+// import Header from './Header/Header'
+
+// const DashLayout = () => {
+
+//   const [open, setOpen] = useState(false)
+
+//   console.log("Open menu from dashLayout ", open)
+
+//   const openSidebar = open ? "dashlayout__container_open" : "dashlayout__container_close"
+
+//   return (
+//     <div>
+//       <Sidebar open={open} setOpen={setOpen} />
+//       <main className={openSidebar}>
+//         <Header />
+//         <main className='outlet__container'>
+//           <Outlet />
+//         </main>
+//         <Footer />
+//       </main>
+
+//     </div>
+//   )
+// }
+
+// export default DashLayout
+
+import React, { useState, lazy, Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
+import Footer from './Footer/Footer';
+import Header from './Header/Header';
+
+const LazySidebar = lazy(() => import('./Sidebar/Sidebar'));
 
 const DashLayout = () => {
+  const [open, setOpen] = useState(false);
 
-  const [open, setOpen] = useState(false)
+  console.log("Open menu from dashLayout ", open);
 
-  console.log("Open menu from dashLayout ", open)
-
-  const openSidebar = open ? "dashlayout__container_open" : "dashlayout__container_close"
+  const openSidebar = open ? "dashlayout__container_open" : "dashlayout__container_close";
 
   return (
     <div>
-      <Sidebar open={open} setOpen={setOpen} />
+      <Suspense fallback={<h1>Loading</h1>}>
+        <LazySidebar open={open} setOpen={setOpen} />
+      </Suspense>
       <main className={openSidebar}>
         <Header />
         <main className='outlet__container'>
@@ -22,9 +55,8 @@ const DashLayout = () => {
         </main>
         <Footer />
       </main>
-
     </div>
-  )
-}
+  );
+};
 
-export default DashLayout
+export default DashLayout;

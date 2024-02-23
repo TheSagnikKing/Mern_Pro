@@ -5,7 +5,7 @@ const Footer = () => {
   
   const content = (
     <main className='footer__main'>
-      <p>Made by @sagniknandy </p>
+
     </main>
   )
 
