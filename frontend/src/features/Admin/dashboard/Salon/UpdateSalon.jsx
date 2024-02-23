@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './UpdateSalon.css';
+import "./CreateSalon.css"
 import { useLocation, useNavigate } from 'react-router-dom';
 // import { IoLocationSharp } from 'react-icons/io5';
 import { useUpdatesalonMutation } from './salonApiSlice';

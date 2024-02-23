@@ -33,7 +33,7 @@ const Salon = () => {
 
   useEffect(() => {
     if(deleteisSuccess){
-      alert(deletesalondata?.message)
+      // alert(deletesalondata?.message)
     }else if(deleteError){
       alert(error?.data?.message)
     }

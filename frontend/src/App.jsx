@@ -84,6 +84,7 @@
 // export default App
 
 import React, { lazy, Suspense } from 'react';
+import "./App.css"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Lazy-loaded components

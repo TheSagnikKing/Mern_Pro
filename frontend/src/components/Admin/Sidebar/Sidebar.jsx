@@ -74,22 +74,22 @@
 import React, { useState } from 'react';
 import "./Sidebar.css"
 import { Link, useLocation } from 'react-router-dom';
-// import { FiMenu } from 'react-icons/fi';
-// import {IoHome} from 'react-icons/io5';
-// import {RiUserSettingsLine} from 'react-icons/ri';
+import { FiMenu } from 'react-icons/fi';
+import {IoHome} from 'react-icons/io5';
+import {RiUserSettingsLine} from 'react-icons/ri';
 
 const Sidebar = React.memo(({ open, setOpen }) => {
     const adminmenudata = [
         {
             id: 1,
             url: '/admin-dashboard',
-            icon: "H",
+            icon: <IoHome />,
             name: "Dashboard"
         },
         {
             id: 2,
             url: '/admin-dashboard/salon',
-            icon: "S",
+            icon: <RiUserSettingsLine />,
             name: "Salon"
         },
     ];
@@ -112,10 +112,10 @@ const Sidebar = React.memo(({ open, setOpen }) => {
                 {open === true ? (
                     <div>
                         <h1>IQB Barber</h1>
-                        <div onClick={closeMenu} className='menu-container-icon'>C</div>
+                        <div onClick={closeMenu} className='menu-container-icon'><FiMenu /></div>
                     </div>
                 ) : (
-                    <div><div onClick={closeMenu} className='menu-container-icon'>C</div></div>
+                    <div><div onClick={closeMenu} className='menu-container-icon'><FiMenu /></div></div>
                 )}
 
                 <div className='sidebar-menu-content'>

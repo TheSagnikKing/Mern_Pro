@@ -89,36 +89,36 @@
 import React, { useState } from 'react';
 import "./Sidebar.css"
 import { Link, useLocation } from 'react-router-dom';
-// import { FiMenu } from 'react-icons/fi';
-// import {IoHome} from 'react-icons/io5';
-// import {RiUserSettingsLine} from 'react-icons/ri';
-// import {MdOutlineMessage} from 'react-icons/md';
-// import {IoIosAnalytics} from 'react-icons/io';
+import { FiMenu } from 'react-icons/fi';
+import {IoHome} from 'react-icons/io5';
+import {RiUserSettingsLine} from 'react-icons/ri';
+import {MdOutlineMessage} from 'react-icons/md';
+import {IoIosAnalytics} from 'react-icons/io';
 
 const Sidebar = React.memo(({ open, setOpen }) => {
     const adminmenudata = [
         {
             id: 1,
             url: '/barber-dashboard',
-            icon: "BD",
+            icon: <IoHome />,
             name: "Dashboard"
         },
         {
             id: 2,
             url: '/barber-dashboard/salon',
-            icon: "BS",
+            icon: <RiUserSettingsLine />,
             name: "Salon"
         },
         {
             id: 3,
             url: '/barber-dashboard/barber',
-            icon: "BB",
+            icon: <MdOutlineMessage />,
             name: "Barbers"
         },
         {
             id: 4,
             url: '/barber-dashboard/customer',
-            icon: "BC",
+            icon: <IoIosAnalytics />,
             name: "Customers"
         }
     ];
@@ -141,10 +141,10 @@ const Sidebar = React.memo(({ open, setOpen }) => {
                 {open === true ? (
                     <div>
                         <h1>IQB Barber</h1>
-                        <div onClick={closeMenu} className='menu-container-icon'>BCL</div>
+                        <div onClick={closeMenu} className='menu-container-icon'><FiMenu /></div>
                     </div>
                 ) : (
-                    <div><div onClick={closeMenu} className='menu-container-icon'>BCL</div></div>
+                    <div><div onClick={closeMenu} className='menu-container-icon'><FiMenu /></div></div>
                 )}
 
                 <div className='sidebar-menu-content'>
