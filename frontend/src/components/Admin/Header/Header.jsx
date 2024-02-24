@@ -52,7 +52,7 @@ const Header = () => {
 
       <div>
         <div style={{width:"4.5rem",height:"4.5rem",borderRadius:"50%",background:"red"}}><img style={{width:"100%",height:"100%",borderRadius:"50%"}}
-        src={currentAdmin?.profile[0]?.url ? `${currentAdmin?.profile[0]?.url}?q=10` : ""} alt="" /></div>
+        src={currentAdmin?.profile[0]?.url ? `${currentAdmin?.profile[0]?.url}?f_webp` : ""} alt="" /></div>
         <h2>User: &nbsp; {currentAdmin?.name}</h2>
         <button onClick={editClicked}>Edit Profile</button>
         {isFetching ? <h1 style={{ color: "#fff" }}>Loader</h1> : <button onClick={logoutClicked}>Logout</button>}

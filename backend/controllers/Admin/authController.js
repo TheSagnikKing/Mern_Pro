@@ -35,7 +35,7 @@ const adminLogin = async (req, res) => {
             }
         },
         ACCESS_TOKEN_SECRET,
-        { expiresIn: '1m' }
+        { expiresIn: '10s' }
     )
 
     const refreshToken = jwt.sign(
@@ -97,7 +97,7 @@ const googleAdminLogin = async (req, res) => {
                 }
             },
             ACCESS_TOKEN_SECRET,
-            { expiresIn: '1m' }
+            { expiresIn: '10s' }
         )
 
         const refreshToken = jwt.sign(
@@ -152,7 +152,7 @@ const adminRefresh = (req, res) => {
                     }
                 },
                 ACCESS_TOKEN_SECRET,
-                { expiresIn: '1m' }
+                { expiresIn: '10s' }
             )
 
             res.json({ accessToken })
@@ -295,7 +295,7 @@ const updateAdmin = async (req, res) => {
             }
         },
         ACCESS_TOKEN_SECRET,
-        { expiresIn: '1m' }
+        { expiresIn: '10s' }
     )
 
     const refreshToken = jwt.sign(
