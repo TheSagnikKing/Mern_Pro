@@ -30,7 +30,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         }),
         googleregister: builder.mutation({
             query: (query) => ({
-                url: `auth/googlesignup?token=${query.token}`,
+                url: `/auth/googlesignup?token=${query.token}`,
                 method: 'POST'
             })
         }),

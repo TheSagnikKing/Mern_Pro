@@ -15,11 +15,10 @@ const app = express()
 //     credentials: true
 // }))
 
-app.use(express.static('dist'))
+
 
 app.use(express.json())
 app.use(cookieParser());
-
 
 app.use(compression({
     level: 9, // Compression level (0 to 9)
@@ -51,6 +50,19 @@ app.use('/admin/other', require('./routes/Admin/otherRoute'))
 //Barber Routes
 app.use('/barber/auth', require('./routes/Barber/authRoute'))
 app.use('/barber/other', require('./routes/Barber/otherRoute'))
+
+const path = require('path');
+
+
+//Always set the code after express.json() and cookie parser
+app.use(express.static('dist'))
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+
+
 
 const PORT = 8000
 
