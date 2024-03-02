@@ -12,14 +12,14 @@ export const authApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getsalonList: builder.query({
             query: (email) => ({
-                url: `/admin/other/salon/salonlist?adminEmail=${email}`,
+                url: `/other/salon/salonlist?adminEmail=${email}`,
                 method: "GET"
             }),
             providesTags: ['Salon']
         }),
         createsalon: builder.mutation({
             query: (salondata) => ({
-                url: '/admin/other/salon/createsalon',
+                url: '/other/salon/createsalon',
                 method: 'POST',
                 body: { ...salondata }
             }),
@@ -27,7 +27,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         }),
         updatesalon: builder.mutation({
             query: (salondata) => ({
-                url: '/admin/other/salon/updatesalon',
+                url: '/other/salon/updatesalon',
                 method: 'PUT',
                 body: salondata
             }),
@@ -35,7 +35,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         }),
         deletesalon: builder.mutation({
             query: (salonId) => ({
-                url: `/admin/other/salon/deletesalon?salonId=${salonId}`,
+                url: `/other/salon/deletesalon?salonId=${salonId}`,
                 method: 'DELETE'
             }),
             invalidatesTags: ['Salon']

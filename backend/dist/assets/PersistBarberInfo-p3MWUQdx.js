@@ -1,0 +1,1 @@
+import{a as t,r as a,i as o,j as e,O as i}from"./index-CA3EcmWk.js";import{b as n}from"./barberauthApiSlice-B5SzINdS.js";const l=()=>{const{data:r,isSuccess:c,isError:d,error:u,isFetching:g}=n(void 0);console.log("Persist Barber Info ",r);const s=t();return a.useEffect(()=>{s(o(r))},[r,s]),e.jsx("div",{children:e.jsx(i,{})})};export{l as default};

@@ -1,0 +1,1 @@
+import{a as r,r as i,A as o,j as t,O as n}from"./index-CA3EcmWk.js";import{g as a}from"./authApiSlice-Br-9cT0Y.js";const l=()=>{const{data:s,isSuccess:d,isError:c,error:m,isFetching:g}=a();console.log("Persist Admin Info ",s);const e=r();return i.useEffect(()=>{e(o(s))},[s,e]),t.jsx("div",{children:t.jsx(n,{})})};export{l as default};

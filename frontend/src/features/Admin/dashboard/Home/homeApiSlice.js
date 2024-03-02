@@ -4,7 +4,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getSalon: builder.query({
             query: () => ({
-                url: '/admin/other/salon',
+                url: '/other/salon',
                 method: 'GET'     
             })
         })

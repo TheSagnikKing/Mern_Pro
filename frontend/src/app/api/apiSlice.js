@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setCredentials } from '../../features/Admin/auth/authSlice'
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'http://localhost:8000',
+    baseUrl: '/admin',
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
         const token = getState().auth.token //akhane token asche auth theke
@@ -36,7 +36,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     if (result?.error?.status === 403) { 
         console.log('sending refresh token')
 
-        const refreshResult = await baseQuery('/admin/auth/refresh', api, extraOptions)
+        const refreshResult = await baseQuery('/auth/refresh', api, extraOptions)
 
         if (refreshResult?.data) {
 

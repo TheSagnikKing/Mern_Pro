@@ -10,14 +10,14 @@ export const barberauthApiSlice = barberapiSlice.injectEndpoints({
     endpoints: builder => ({
         login: builder.mutation({
             query: credentials => ({
-                url: '/barber/auth/signin',
+                url: '/auth/signin',
                 method: 'POST',
                 body: { ...credentials }
             })
         }),
         sendLogout: builder.mutation({
             query: () => ({
-                url: '/barber/auth/logout',
+                url: '/auth/logout',
                 method: 'POST',
             }),
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
@@ -36,7 +36,7 @@ export const barberauthApiSlice = barberapiSlice.injectEndpoints({
         }),
         refresh: builder.mutation({
             query: () => ({
-                url: '/barber/auth/refresh',
+                url: '/auth/refresh',
                 method: 'GET',
             }),
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
@@ -52,7 +52,7 @@ export const barberauthApiSlice = barberapiSlice.injectEndpoints({
         }),
         barberLoggedIn: builder.query({
             query: () => ({
-                url: '/barber/auth/barberloggedin',
+                url: '/auth/barberloggedin',
                 method: 'GET'
             }),
             // providesTags: ['Barber']

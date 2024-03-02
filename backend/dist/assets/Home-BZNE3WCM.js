@@ -1,0 +1,1 @@
+import{d as o,h,j as s}from"./index-CA3EcmWk.js";const l=()=>{const e=o(h);return s.jsxs("div",{children:[s.jsx("h1",{children:"Barber Home Page"}),s.jsx("h1",{children:e==null?void 0:e.email}),s.jsx("h1",{children:e==null?void 0:e.name})]})};export{l as default};

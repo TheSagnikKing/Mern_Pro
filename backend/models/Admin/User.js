@@ -31,7 +31,10 @@ const userSchema = new mongoose.Schema({
           type:String,
         }
       }
-    ]
+    ],
+    AuthType:{
+        type:String
+    }
 })
 
 module.exports = mongoose.model('AdminUser', userSchema)

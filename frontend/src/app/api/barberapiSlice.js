@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setCredentials } from '../../features/Barber/auth/barberauthSlice'
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'http://localhost:8000',
+    baseUrl: '/barber',
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => { 
         const barbertoken = getState().barberauth.barbertoken //akhane token asche barberauth theke

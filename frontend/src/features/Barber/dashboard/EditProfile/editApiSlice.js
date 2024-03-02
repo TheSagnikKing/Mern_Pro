@@ -4,7 +4,7 @@ export const editApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         uploadAdminImage: builder.mutation({
             query: (filedata) => ({
-                url: '/admin/other/admin/image/upload',
+                url: '/other/admin/image/upload',
                 method: 'POST',
                 body:filedata
             }),

@@ -10,40 +10,40 @@ export const authApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         login: builder.mutation({
             query: credentials => ({
-                url: '/admin/auth/signin',
+                url: '/auth/signin',
                 method: 'POST',
                 body: { ...credentials }
             })
         }),
         googleLogin: builder.mutation({
             query: query => ({
-                url: `/admin/auth/googlesignin?token=${query.token}`,
+                url: `/auth/googlesignin?token=${query.token}`,
                 method: 'POST'
             })
         }),
         register: builder.mutation({
             query: (credentials) => ({
-                url: '/admin/auth/signup',
+                url: '/auth/signup',
                 method: 'POST',
                 body: credentials
             })
         }),
         googleregister: builder.mutation({
             query: (query) => ({
-                url: `/admin/auth/googlesignup?token=${query.token}`,
+                url: `auth/googlesignup?token=${query.token}`,
                 method: 'POST'
             })
         }),
         updateAdmin: builder.mutation({
             query: (credentials) => ({
-                url: '/admin/auth/update',
+                url: '/auth/update',
                 method: 'PATCH',
                 body: credentials
             })
         }),
         sendLogout: builder.mutation({
             query: () => ({
-                url: '/admin/auth/logout',
+                url: '/auth/logout',
                 method: 'POST',
             }),
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
@@ -62,7 +62,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         }),
         refresh: builder.mutation({
             query: () => ({
-                url: '/admin/auth/refresh',
+                url: '/auth/refresh',
                 method: 'GET',
             }),
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
@@ -78,7 +78,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         }),
         adminLoggedIn: builder.query({
             query: () => ({
-                url: '/admin/auth/adminloggedin',
+                url: '/auth/adminloggedin',
                 method: 'GET'
             }),
             providesTags: ['Admin']
